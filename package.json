@@ -4,7 +4,7 @@
     "sv:dev": "NODE_ENV=development pnpm run start",
     "build:prd": "pnpm build -- --jsx react-jsx",
     "build:dev": "pnpm build",
-    "build": "tsc --watch",
+    "build": "tsc",
     "start": "node server.js"
   },
   "dependencies": {
