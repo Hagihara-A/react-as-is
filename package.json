@@ -5,7 +5,8 @@
     "build:prd": "pnpm build -- --jsx react-jsx",
     "build:dev": "pnpm build",
     "build": "tsc",
-    "start": "node server.js"
+    "start": "node server.js",
+    "publish-gh-pages": "git checkout gh-pages && git merge -q master && pnpm build:prd && git add -f build/ && git commit -m 'gh-pages' && git push --set-upstream origin gh-pages && git checkout master"
   },
   "dependencies": {
     "react": "^17.0.2",
