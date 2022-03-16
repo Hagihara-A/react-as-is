@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "module": "ES2022" /* Specify what module code is generated. */,
+    "rootDir": "./src" /* Specify the root folder within your source files. */,
+    "moduleResolution": "Node" /* Specify how TypeScript looks up a file from a given module specifier. */,
+    "outDir": "./build" /* Specify an output folder for all emitted files. */,
+    "isolatedModules": true /* Ensure that each file can be safely transpiled without relying on other imports. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "jsx": "react-jsxdev"
+  }
+}
