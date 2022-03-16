@@ -5,6 +5,7 @@ import { extname } from "path";
 
 const hostname = "127.0.0.1";
 const port = 3000;
+const IS_PRD = process.env.NODE_ENV === "production";
 
 const server = http.createServer(async (req, res) => {
   const ext = extname(req.url);
@@ -14,7 +15,9 @@ const server = http.createServer(async (req, res) => {
   try {
     let content;
     if (req.url === "/") {
-      content = HTML;
+      content = IS_PRD
+        ? await fs.readFile("./index.html", { encoding: "utf8" })
+        : DEV_HTML;
     } else {
       content = await fs.readFile("." + req.url, { encoding: "utf8" });
     }
@@ -32,18 +35,16 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
-const IS_PRD = process.env.NODE_ENV === "production";
-const HTML = `
+const DEV_HTML = `
 <!DOCTYPE html>
   <head>
       <title>React As Is</title>
       <script type="importmap">
         {
           "imports": {
-              "react": "https://esm.sh/react@17${IS_PRD ? "" : "?dev"}",
-              "react-dom": "https://esm.sh/react-dom@17${IS_PRD ? "" : "?dev"}",
-              "react/jsx-runtime": "https://esm.sh/react@17/jsx-runtime",
-              "react/jsx-dev-runtime": "https://esm.sh/react@17/jsx-dev-runtime"
+              "react": "https://esm.sh/react@17?dev",
+              "react-dom": "https://esm.sh/react-dom@17?dev",
+              "react/jsx-dev-runtime": "https://esm.sh/react@17/jsx-dev-runtime?dev"
           }
         }
       </script>
